@@ -42,6 +42,9 @@ begin
     mainMembership := loadMembership(DATABASE_MEMBER_FILENAME);
     mainFilm := loadFilm(DATABASE_FILM_FILENAME);
     mainSchedule := loadSchedule(DATABASE_SCHEDULE_FILENAME);
+    mainDate := loadDate (DATABASE_DATE_FILENAME);
+    mainTransaction := loadTransaction (DATABASE_TRANSACTION_FILENAME);
+    mainCapacity := loadCapacity (DATABASE_CAPACITY_FILENAME);
 end;
 
 procedure saveAll();
