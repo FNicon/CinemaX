@@ -159,18 +159,13 @@ var
         write('Loading Date Data...');
         assign(selectedDatabase,filename);
         reset(selectedDatabase);
-        size := 0;
-        while not eof(selectedDatabase) do
-        begin
             readln(selectedDatabase,line);
             t := stringToArray(line);
-            size := size + 1;
             val(t[1], i[1]); {Mengubah data tanggal string menjadi integer}
             val(t[2], i[2]); {Mengubah data bulan string menjadi integer}
             val(t[3], i[3]); {Mengubah data tahun string menjadi integer}
-            returnObject.contents[size] := DateDataCons(i[1], i[2], i[3], t[4]);
+            returnObject := DateDataCons(i[1], i[2], i[3], t[4]);
         end;
-        returnObject.size := size;
         loadDate := returnObject;
         close(selectedDatabase);
         writeln('OK');
