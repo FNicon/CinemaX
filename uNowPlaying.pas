@@ -2,10 +2,10 @@ unit uNowPlaying;
 
 interface
 	uses uConfig, uFilm, uLoader, uParser;
-	procedure nowplaying (mainf:Film);
+	procedure nowPlaying (mainf:Film);
 
 implementation
-procedure nowplaying (mainf: Film); {menampilkan film apa saja yang ditayangkan hari ini}
+procedure nowPlaying (mainf: Film); {menampilkan film apa saja yang ditayangkan hari ini}
 var i : integer;
 begin
 	for i:=1 to mainf.size do
