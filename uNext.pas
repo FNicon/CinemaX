@@ -21,17 +21,16 @@ interface
 	{F.S : Menampilkan semua film pada esok hari}
 	
 implementation
-begin
-	procedure showNextDay (mainD:Schedule);			{Data from database_schdl.txt}
+	procedure showNextDay (mainD:Schedule);							{Data from database_schdl.txt}
 	{KAMUS}
 	var
-		tanggal	: tgl;								{tanggal untuk input tanggal}
+		tanggal		: tgl;								{tanggal untuk input tanggal}
 		i		: Integer;							{i counter}
 		cek		: string;							{simpan sementara data untuk cek}
 	begin
-	cek:='';
-	readln(tanggal.d, tanggal.m, tanggal.y);
-	tanggal.d:=tanggal.d+1;					{NxtD:=D.h+1;}
+		cek:='';
+		readln(tanggal.d, tanggal.m, tanggal.y);		{<<<< Gantiin don Ray... T_T>>>>}
+		tanggal.d:=tanggal.d+1;					{NxtD:=D.h+1;}
 		for i:=1 to mainD.size do
 		begin
 			if (mainD.contents[i].bulanmulaitayang=tanggal.m) and (mainD.contents[i].tahunmulaitayang=tanggal.y) and (tanggal.d>mainD.contents[i].tanggalmulaitayang) then
