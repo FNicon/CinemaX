@@ -1,6 +1,6 @@
 Program main;
 
-uses uConfig, uSaver, uMembership, uFilm, uLoader, uParser, uNowPlaying, uScheduleFilm, uUpComing, uDate, uTransaction, uCapacity;
+uses uConfig, uSaver, uMembership, uFilm, uLoader, uParser, uNowPlaying, uScheduleFilm, uUpComing, uDateData, uTransaction, uCapacity;
 
 type u = record
           nama : array [1..50] of string;
@@ -18,7 +18,7 @@ var
     mainMembership : Membership;
     mainFilm : Film;
     mainSchedule : Schedule;
-    mainDate : Date;
+    mainDate : DateData;
     mainTransaction : Transaction;
     mainCapacity : Capacity;
     namas : u;
