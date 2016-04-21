@@ -165,7 +165,6 @@ var
             val(t[2], i[2]); {Mengubah data bulan string menjadi integer}
             val(t[3], i[3]); {Mengubah data tahun string menjadi integer}
             returnObject := DateDataCons(i[1], i[2], i[3], t[4]);
-        end;
         loadDate := returnObject;
         close(selectedDatabase);
         writeln('OK');
