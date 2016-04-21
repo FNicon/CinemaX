@@ -7,7 +7,6 @@ interface
 	procedure tulis (nopesan:Integer);
 	
 implementation
-begin
 	procedure tulis (nopesan:Integer);
 	{I.S : no pesan terdefinisi}
 	{F.S : Output tulis nomor pesan}
@@ -34,19 +33,18 @@ begin
 	
 	{KAMUS}
 	var
+		i:Integer;				{counter}
+		j:Integer				{counter}
 		jdl: string;				{input judul}
 		tgl: integer;				{input tanggal}
 		bln: integer;				{input bulan}
 		thn : integer;				{input tahun}
-		jml: string;				{sisa kursi}
-		jm:jam;						{input jam}
-		bl:string;					{jml beli}
-		i:Integer;					{counter}
-		nmr:Integer;				{output Nomor pemesanan}
-		j:Integer					{counter}
-		harga:Integer				{output harga}
 		jawaban:char				{input tanya snack}
 		pilihan:string;				{input pilihan snack}
+		jm:jam;					{input jam}
+		bl:Integer;				{input jml beli}
+		nmr:Integer;				{output Nomor pemesanan}
+		harga:Integer				{output harga}
 	begin
 		for j:=1 to mainT.size do
 		begin
@@ -55,7 +53,7 @@ begin
 		end;
 		write('> Film : ');
 		readln(jdl);
-		readln('> Tanggal tayang: ',tgl, bln, thn);
+		readln('> Tanggal tayang: ',tgl, bln, thn);	{<<<< Gantiin dong Ray... T_T>>>>}
 		readln('> Jam tayang: ',jm);
 		for i:=1 to mainT.size do
 		begin
@@ -64,43 +62,43 @@ begin
 				writeln('> Kapasitas tersisa: ',mainC.contents[i].sisakursi,' orang');
 				repeat
 				begin
-				readln('> Masukkan jumlah tiket yang ingin dibeli: ',bl);
-				if bl<=jml then
-				begin
-					nmr:=nmr+1;
-					write('> Pemesanan sukses, nomor pemesanan Anda adalah: ');
-					tulis(nmr);
-					mainC.contents[i].sisakursi:=mainC.contents[i].sisakursi-bl;
-					mainT.contents[i].nomorpemesanan:=nmr;
-					harga:=mainF.contents[i].pWeekdays*bl;
-					writeln('> Harga yang harus dibayar adalah Rp.',harga);
-					writeln('> Apakah anda ingin membeli snack? (Y/N) ',jawaban);
-					mainT.contents[i].total:=harga;
-					if jawaban='Y' then
+					readln('> Masukkan jumlah tiket yang ingin dibeli: ',bl);
+					if bl<=mainC.contents[i].sisakursi then
 					begin
-						writeln('> Soda		(Rp. 5000');
-						writeln('> Pop Corn	(Rp. 3000');
-						readln('> Pilihan Anda?',pilihan);
-						while (pilihan<>'Soda') and (pilihan<>'Pop Corn') do
+						nmr:=nmr+1;
+						write('> Pemesanan sukses, nomor pemesanan Anda adalah: ');
+						tulis(nmr);
+						mainC.contents[i].sisakursi:=mainC.contents[i].sisakursi-bl;
+						mainT.contents[i].nomorpemesanan:=nmr;
+						harga:=mainF.contents[i].pWeekdays*bl;
+						writeln('> Harga yang harus dibayar adalah Rp.',harga);
+						writeln('> Apakah anda ingin membeli snack? (Y/N) ',jawaban);
+						mainT.contents[i].total:=harga;
+						if jawaban='Y' then
 						begin
-							if pilihan='Soda' then
+							writeln('> Soda		(Rp. 5000');
+							writeln('> Pop Corn	(Rp. 3000');
+							readln('> Pilihan Anda?',pilihan);
+							while (pilihan<>'Soda') and (pilihan<>'Pop Corn') do
 							begin
-								harga:=harga+5000;
-							end
-							else if pilihan:='Pop Corn' then
-							begin
-								harga:=harga+3000;
+								if pilihan='Soda' then
+								begin
+									harga:=harga+5000;
+								end
+								else if pilihan:='Pop Corn' then
+								begin
+									harga:=harga+3000;
+								end;
+								readln('> Pilihan belum tepat! Pilihan? ',pilihan);
 							end;
-							readln('> Pilihan belum tepat! Pilihan? ',pilihan);
 						end;
 						writeln('Total harga : Rp.',harga);
+						mainT.contents[i].jenisPembayaran:='Belum dibayar';
+					end
+					else
+					begin
+						writeln('> Pemesanan gagal');
 					end;
-					mainT.contents[i].jenisPembayaran:='Belum dibayar';
-				end
-				else
-				begin
-					writeln('> Pemesanan gagal');
-				end;
 				end;
 				until mainT.contents[i].nomorpemesanan=nmr;
 			end;
