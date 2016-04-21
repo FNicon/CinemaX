@@ -2,7 +2,7 @@ unit uUpComing;
 
 interface
 	uses uConfig, uDateData, uScheduleFilm, uLoader, uParser;
-	procedure upcoming (mains:Schedule; maind :DateData);
+	procedure showUpcoming (mains:Schedule; maind :DateData);
 	function cekkabisat (maind: DateData) : boolean;
 implementation
 function cekkabisat (maind:DateData)  : boolean ; {fungsi untuk mencek tahun merupakan tahun kabisat atau bukan}
@@ -19,7 +19,7 @@ begin
 	end;
 end;
 		
-procedure upcoming (mains:Schedule; maind :DateData); {menampilkan film apa saja yang akan ditayangkan minggu depan. minggu depan adalah 7 hari setelah hari ini}
+procedure showUpcoming (mains:Schedule; maind :DateData); {menampilkan film apa saja yang akan ditayangkan minggu depan. minggu depan adalah 7 hari setelah hari ini}
 var i : integer;
 	a,b: longint;
 begin
