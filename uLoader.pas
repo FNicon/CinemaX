@@ -1,14 +1,14 @@
 unit uLoader;
 
 interface
-     uses uMembership, uMembershipData, uFilm, uFilmData, uScheduleFilm, uScheduleData, uCapacity, uCapacityData, uTransaction, uTransactionData, uDate, uDateData, uConfig, uParser;
+     uses uMembership, uMembershipData, uFilm, uFilmData, uScheduleFilm, uScheduleData, uCapacity, uCapacityData, uTransaction, uTransactionData, uDateData, uConfig, uParser;
 
      function loadMembership(filename:string):Membership;
      function loadFilm(filename:string):Film;
      function loadSchedule(filename:string):Schedule;
      function loadCapacity(filename:string):Capacity;
      function loadTransaction(filename:string):Transaction;
-     function loadDate(filename:string):Date;
+     function loadDate(filename:string):DateData;
 
 implementation
 var
@@ -150,7 +150,7 @@ var
         close(selectedDatabase);
         writeln('OK');
     end;
-    function loadDate(filename:string):Date;
+    function loadDate(filename:string):DateData;
     var
         returnObject : Date;
         i : array[0..50] of longint;
