@@ -152,7 +152,7 @@ var
     end;
     function loadDate(filename:string):DateData;
     var
-        returnObject : Date;
+        returnObject : DateData;
         i : array[0..50] of longint;
 
     begin
