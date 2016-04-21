@@ -23,17 +23,17 @@ implementation
 	d1, m1, y1, d2, m2, y2 : integer
 	): boolean;
 		begin
-			if (y1<y2) then 
+			if (y1<y2) then {cek tahun}
 				isEarlier := True
 			else if (y1=y2) then
 					begin
-						if m1<m2 then
+						if m1<m2 then {cek bulan}
 							isEarlier:=True
 						else if m1=m2 then
 								begin
-								if d1<=d2 then 
+									if d1<=d2 then {cek tanggal. asumsi tanggal yg sama berniali benar}
 									 isEarlier := True
-								else isEarlier := False;
+									else isEarlier := False;
 								end;
 					end;
 		end;
@@ -75,6 +75,8 @@ implementation
 					b1:=Movie.contents[i].bulanmulaitayang;
 					th1:=Movie.contents[i].tahunmulaitayang;
 					d:=Movie.contents[i].lamaharitayang;
+					
+					{assign nilai t2, b2, dan th2 sebagai tanggal terakhir film ditayangkan}
 				
 					if (b1=1) or (b1=3) or (b1=5) or (b1=7) or (b1=8) or (b1=10) then
 					begin
@@ -144,6 +146,8 @@ implementation
 							end;
 					end;
 					
+					{cek jika tanggal input diantara tanggal mulai tayang dan tanggal terakhir tayang}
+					{jika benar maka akan ditampilkan jam tayang}
 					if (isEarlier(t1, b1, th1, dd, mm, yy)=True) and (isEarlier(dd, mm, yy, t2, b2, th2)=True) then
 						writeln(Movie.contents[i].jamtayang);
 				end;
