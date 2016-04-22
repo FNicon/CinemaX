@@ -21,7 +21,13 @@ function hargaCC (seat : integer; hari : string; pW1, pW2 : longint) : longint;
 	begin
 		if (hari='Sabtu') then
 			begin
-			hargaCC := pW2 * (seat - 1);
+                    if(seat >= 2) then
+                    begin
+                   	 hargaCC := pW2 * (seat - 1);
+                    end else {seat=1}
+                    begin
+                         hargaCC := pW2 * seat
+                    end;
 			end else
 		if (hari='Minggu') then
 			begin
