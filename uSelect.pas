@@ -1,7 +1,7 @@
 {problems : butuh type tanggal untuk input tanggal}
 unit uselect;
 interface
-	uses uLoader;
+	uses uLoader,uSnackX,uPrice;
 	
 	procedure selectMovie (mainT:Transaction,mainC:Capacity,mainF: Film);
 	procedure tulis (nopesan:Integer);
@@ -27,7 +27,7 @@ implementation
 		end;
 	end;
 			
-	procedure selectMovie (mainT:Transaction,mainC:Capacity,mainF: Film);		{Data from Database_Capacity.txt, database_transaction.txt,database_film.txt}
+	procedure selectMovie (mainT:Transaction,mainC:Capacity,mainF: Film,mainS:Snack);		{Data from Database_Capacity.txt, database_transaction.txt,database_film.txt}
 	{I.S : Data dari database_Capacity terdefinisi.}
 	{F.S : Output nomer pesan,harga yang dibayar}
 	
@@ -49,15 +49,14 @@ implementation
 		for j:=1 to mainT.size do
 		begin
 			nmr:=mainT.contents[j].nomorpemesanan;
-			mainT.size:=mainT.size+1;
+			mainT.contents[j].nomorpemesanan:=mainT.contents[j].nomorpemesanan+1;
 		end;
-		write('> Film : ');
-		readln(jdl);
-		readln('> Tanggal tayang: ',tgl, bln, thn);	{<<<< Gantiin dong Ray... T_T>>>>}
+		readln('> Film : ',jdl);
+		readln('> Tanggal tayang (DD MM YYYY) : ',tgl, bln, thn);	{<<<< Gantiin dong Ray... T_T>>>>}
 		readln('> Jam tayang: ',jm);
 		for i:=1 to mainT.size do
 		begin
-			if (mainC.contents[i].judul=jdl) and (mainC.contents[i].tanggal=tgl) and (mainC.contents[i].bulan = bln) and (mainC.contents[i].tahun = thn) and (mainC.contents[i].jam = jm) then
+			if (jdl=mainC.contents[i].judul) and (tgl=mainC.contents[i].tanggal) and (bln=mainC.contents[i].bulan) and (thn=mainC.contents[i].tahun) and (jm=mainC.contents[i].jam) then
 			begin
 				writeln('> Kapasitas tersisa: ',mainC.contents[i].sisakursi,' orang');
 				repeat
@@ -74,6 +73,7 @@ implementation
 						writeln('> Harga yang harus dibayar adalah Rp.',harga);
 						writeln('> Apakah anda ingin membeli snack? (Y/N) ',jawaban);
 						mainT.contents[i].total:=harga;
+						snack();{
 						if jawaban='Y' then
 						begin
 							writeln('> Soda		(Rp. 5000');
@@ -91,8 +91,10 @@ implementation
 								end;
 								readln('> Pilihan belum tepat! Pilihan? ',pilihan);
 							end;
-						end;
+						end;}
+						harga:=harga+mainS.harga;
 						writeln('Total harga : Rp.',harga);
+						mainT.contents[i].total:=harga;
 						mainT.contents[i].jenisPembayaran:='Belum dibayar';
 					end
 					else
