@@ -12,7 +12,7 @@ interface
           DATABASE_MEMBER_FILENAME = 'database_member.txt';
           COMMAND_NUMBER = 15;
           COMMAND_LIST : array[1..COMMAND_NUMBER] of string = (
-                                                            'loadAll', 
+                                                            'help', 
                                                             'nowPlaying', 
                                                             'showUpcoming', 
                                                             'showSchedule', 

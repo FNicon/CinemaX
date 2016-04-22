@@ -1,7 +1,6 @@
 unit uCapacityData;
 
 interface
-
      type
           CapacityData = record
               namafilm : string;

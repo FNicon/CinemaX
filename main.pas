@@ -1,6 +1,6 @@
 Program main;
 
-uses uConfig, uSaver, uMembership, uFilm, uLoader, uParser, uNowPlaying, uScheduleFilm, uUpComing, uDateData, uTransaction, uCapacity;
+uses uConfig, uSaver, crt, uMembership, uFilm, uLoader, uParser, uNowPlaying, uUpComing, uDateData, uTransaction, uCapacity, uShow, uNext, uScheduleFilm;
 
 type u = record
           nama : array [1..50] of string;
@@ -25,8 +25,6 @@ var
     saldo : p;
     sizes : integer;
     ic : integer;
-	judul : j;
-	namaf : c ;
     command : string;
 
 
@@ -49,10 +47,11 @@ end;
 
 procedure saveAll();
 begin
-    mainSchedule := loadSchedule (DATABASE_SCHEDULE_FILENAME);
-    mainDate := loadDate (DATABASE_DATE_FILENAME);
-    mainCapacity := loadCapacity ( DATABASE_CAPACITY_FILENAME);
-    mainTransaction := loadTransaction (DATABASE_TRANSACTION_FILENAME);
+    saveMembership(mainMembership,DATABASE_MEMBER_FILENAME);
+    saveFilm(mainFilm,DATABASE_FILM_FILENAME);
+    saveSchedule(mainSchedule,DATABASE_SCHEDULE_FILENAME);
+    saveTransaction(mainTransaction,DATABASE_TRANSACTION_FILENAME);
+    saveCapacity(mainCapacity,DATABASE_CAPACITY_FILENAME);
 end;
 
 procedure showMembership(var content : u);
@@ -131,7 +130,7 @@ begin
     if(coms = 'nowPlaying') then nowPlaying(mainFilm)
     else if(coms = 'help') then help()
     else if(coms = 'showMovie') then showMovie(mainFilm)
-    else if(coms = 'showNextDay') then showNextDay(mainSchedule);
+    else if(coms = 'showNextDay') then showNextDay(mainSchedule, mainDate);
 end;
 
 

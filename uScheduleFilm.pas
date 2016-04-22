@@ -7,9 +7,7 @@ interface
           contents : array[1..ARRAY_LIMIT] of ScheduleData;
           size : longint;
      end;
-	
-
 
 implementation
-   
+
 end.

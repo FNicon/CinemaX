@@ -1,18 +1,18 @@
-The Jungle Book | 12.30 | 08 | 04 | 2016 | 7
-The Jungle Book | 14.40 | 08 | 04 | 2016 | 7
-The Jungle Book | 16.50 | 08 | 04 | 2016 | 7
-The Jungle Book | 19.00 | 08 | 04 | 2016 | 7
-The Jungle Book | 21.10 | 08 | 04 | 2016 | 7
-The Angry Birds Movie | 19.30 | 15 | 04 | 2016 | 7
-The Divergent Series : Allegiant | 12.00 | 08 | 04 | 2016 | 7
-The Fabulous Udin | 20.00 | 15 | 04 | 2016 | 7
-The Divergent Series : Allegiant | 14.25 | 08 | 04 | 2016 | 7
-The Divergent Series : Allegiant | 16.50 | 08 | 04 | 2016 | 7
-The Divergent Series : Allegiant | 19.15 | 08 | 04 | 2016 | 7
-The Divergent Series : Allegiant | 21.40 | 08 | 04 | 2016 | 7
-Batman V Superman : Dawn of Justice | 12.30 | 08 | 04 | 2016 | 7
-Batman V Superman : Dawn of Justice | 15.30 | 08 | 04 | 2016 | 7
-Batman V Superman : Dawn of Justice | 18.30 | 08 | 04 | 2016 | 7
-Batman V Superman : Dawn of Justice | 21.30 | 08 | 04 | 2016 | 7
-Batman V Superman : Dawn of Justice | 21.30 | 08 | 04 | 2016 | 7
-Finding Dory | 18.00 | 15 | 04 | 2016 | 7
+The Jungle Book | 12.30 | 04 | 4 | 2016 | 7
+The Jungle Book | 14.40 | 04 | 4 | 2016 | 7
+The Jungle Book | 16.50 | 04 | 4 | 2016 | 7
+The Jungle Book | 19.00 | 04 | 4 | 2016 | 7
+The Jungle Book | 21.10 | 04 | 4 | 2016 | 7
+The Angry Birds Movie | 19.30 | 04 | 4 | 2016 | 7
+The Divergent Series : Allegiant | 12.00 | 04 | 4 | 2016 | 7
+The Fabulous Udin | 20.00 | 04 | 4 | 2016 | 7
+The Divergent Series : Allegiant | 14.25 | 04 | 4 | 2016 | 7
+The Divergent Series : Allegiant | 16.50 | 04 | 4 | 2016 | 7
+The Divergent Series : Allegiant | 19.15 | 04 | 4 | 2016 | 7
+The Divergent Series : Allegiant | 21.40 | 04 | 4 | 2016 | 7
+Batman V Superman : Dawn of Justice | 12.30 | 04 | 4 | 2016 | 7
+Batman V Superman : Dawn of Justice | 15.30 | 04 | 4 | 2016 | 7
+Batman V Superman : Dawn of Justice | 18.30 | 04 | 4 | 2016 | 7
+Batman V Superman : Dawn of Justice | 21.30 | 04 | 4 | 2016 | 7
+Batman V Superman : Dawn of Justice | 21.30 | 04 | 4 | 2016 | 7
+Finding Dory | 18.00 | 04 | 4 | 2016 | 7
