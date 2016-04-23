@@ -68,12 +68,9 @@ begin
 				writeln(mains.contents[i].namafilm);
 			end;
 			temp := mains.contents[i].namafilm;
-		end else if (maind.tanggal+7=mains.contents[i].tanggalmulaitayang) then {jika tanggal hari ini lebih kecil dari tanggal minggu depan}
+		end else if (maind.tanggal+7=mains.contents[i].tanggalmulaitayang) and (temp<>mains.contents[i].namafilm) then {jika tanggal hari ini lebih kecil dari tanggal minggu depan}
 		begin
-			if(temp<>mains.contents[i].namafilm) then
-			begin
-				writeln(mains.contents[i].namafilm);
-			end;
+			writeln(mains.contents[i].namafilm);
 			temp := mains.contents[i].namafilm;
 		end else if (maind.tanggal+7>31) and (maind.bulan=12) and (maind.tahun<mains.contents[i].tahunmulaitayang)  then
 		begin
