@@ -32,7 +32,7 @@ var
             readln(selectedDatabase,line);
             t := stringToArray(line);
             size := size + 1;
-            val(t[3], i[1]); {Mengubah data saldo string menjadi integer}
+            val(t[3], i[1]); {Mengubah data saldo string menjadi longint}
             returnObject.contents[size] := MembershipDataCons(t[1], t[2], i[1]);
         end;
         returnObject.size := size;
@@ -56,8 +56,8 @@ var
             readln(selectedDatabase,line);
             t := stringToArray(line);
             size := size + 1;
-            val(t[6], i[1]); {Mengubah data harga weekdays string menjadi integer}
-            val(t[7], i[2]); {Mengubah data harga weekend string menjadi integer}
+            val(t[6], i[1]); {Mengubah data harga weekdays string menjadi longint}
+            val(t[7], i[2]); {Mengubah data harga weekend string menjadi longint}
             returnObject.contents[size] := FilmDataCons(t[1], t[2], t[3], t[4], t[5], i[1], i[2]);
         end;
         returnObject.size := size;
@@ -82,10 +82,10 @@ var
             t := stringToArray(line);
             size := size + 1;
             val(t[2], r[1]); {Mengubah data jam string menjadi real}
-            val(t[3], i[1]); {Mengubah data tanggal tayang string menjadi integer}
-            val(t[4], i[2]); {Mengubah data bulan tayang string menjadi integer}
-            val(t[5], i[3]); {Mengubah data tahun tayang string menjadi integer}
-            val(t[6], i[4]); {Mengubah data lama tayang string menjadi integer}
+            val(t[3], i[1]); {Mengubah data tanggal tayang string menjadi longint}
+            val(t[4], i[2]); {Mengubah data bulan tayang string menjadi longint}
+            val(t[5], i[3]); {Mengubah data tahun tayang string menjadi longint}
+            val(t[6], i[4]); {Mengubah data lama tayang string menjadi longint}
             returnObject.contents[size] := ScheduleDataCons(t[1], r[1], i[1], i[2], i[3], i[4]);
         end;
         returnObject.size := size;
@@ -109,11 +109,11 @@ var
             readln(selectedDatabase,line);
             t := stringToArray(line);
             size := size + 1;
-            val(t[2], i[1]); {Mengubah data tanggal string menjadi integer}
-            val(t[3], i[2]); {Mengubah data bulan string menjadi integer}
-            val(t[4], i[3]); {Mengubah data tahun string menjadi integer}
+            val(t[2], i[1]); {Mengubah data tanggal string menjadi longint}
+            val(t[3], i[2]); {Mengubah data bulan string menjadi longint}
+            val(t[4], i[3]); {Mengubah data tahun string menjadi longint}
             val(t[5], r[1]); {Mengubah data jam string menjadi real}
-            val(t[6], i[4]); {Mengubah data sisakursi string menjadi integer}
+            val(t[6], i[4]); {Mengubah data sisakursi string menjadi longint}
             returnObject.contents[size] := CapacityDataCons(t[1], i[1], i[2], i[3], r[1], i[4]);
         end;
         returnObject.size := size;
@@ -137,12 +137,12 @@ var
             readln(selectedDatabase,line);
             t := stringToArray(line);
             size := size + 1;
-            val(t[1], i[1]); {Mengubah data nomor pesanan string menjadi integer}
-            val(t[3], i[2]); {Mengubah data tanggal tayang string menjadi integer}
-            val(t[4], i[3]); {Mengubah data bulan tayang string menjadi integer}
-            val(t[5], i[4]); {Mengubah data tahun tayang string menjadi integer}
+            val(t[1], i[1]); {Mengubah data nomor pesanan string menjadi longint}
+            val(t[3], i[2]); {Mengubah data tanggal tayang string menjadi longint}
+            val(t[4], i[3]); {Mengubah data bulan tayang string menjadi longint}
+            val(t[5], i[4]); {Mengubah data tahun tayang string menjadi longint}
             val(t[6], r[1]); {Mengubah data jam tayang string menjadi real}
-            val(t[7], i[5]); {Mengubah data total string menjadi integer}
+            val(t[7], i[5]); {Mengubah data total string menjadi longint}
             returnObject.contents[size] := TransactionDataCons(i[1], t[2], i[2], i[3], i[4], r[1], i[5], t[8]);
         end;
         returnObject.size := size;
@@ -161,9 +161,9 @@ var
         reset(selectedDatabase);
             readln(selectedDatabase,line);
             t := stringToArray(line);
-            val(t[1], i[1]); {Mengubah data tanggal string menjadi integer}
-            val(t[2], i[2]); {Mengubah data bulan string menjadi integer}
-            val(t[3], i[3]); {Mengubah data tahun string menjadi integer}
+            val(t[1], i[1]); {Mengubah data tanggal string menjadi longint}
+            val(t[2], i[2]); {Mengubah data bulan string menjadi longint}
+            val(t[3], i[3]); {Mengubah data tahun string menjadi longint}
             returnObject := DateDataCons(i[1], i[2], i[3], t[4]);
         loadDate := returnObject;
         close(selectedDatabase);
