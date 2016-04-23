@@ -81,7 +81,7 @@ begin
 			b:= maind.bulan-11; {jika bulan hari ini lebih besar dari bulan minggu depan}
 			if (a=mains.contents[i].tanggalmulaitayang) and (b=mains.contents[i].bulanmulaitayang) and (temp<>mains.contents[i].namafilm) then
 			begin
-				writeln('>',mains.contents[i].namafilm);
+				writeln(mains.contents[i].namafilm);
 			end;
 			temp := mains.contents[i].namafilm;
 		end;
