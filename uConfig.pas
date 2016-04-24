@@ -18,14 +18,14 @@ interface
                                                             'showSchedule', 
                                                             'genreFilter',
                                                             'ratingFilter',
-                                                            'searchMovie',
+                                                            'search',
                                                             'showMovie',
                                                             'showNextDay',
                                                             'selectMovie',
                                                             'payCreditCard',
                                                             'payMember',
-                                                            'loginMember',
-                                                            'regMember',
+                                                            'login',
+                                                            'register',
                                                             'exit'
                                                             );
 implementation

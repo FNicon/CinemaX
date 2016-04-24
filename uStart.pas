@@ -1,5 +1,6 @@
 unit uStart;
 interface
+uses crt;
 
 procedure start();
 
@@ -23,7 +24,8 @@ begin
     writeln('                     16515289 Fildah Ananda Amalia');
     writeln('                     16515324 Chessa Nur Triejunita');
     writeln('                     16515345 Umar Al Faruqi');
-    readln;
+    delay(5000);
+    clrscr;
 end;
 
 end.

@@ -1,9 +1,10 @@
 unit uLoginMember;
 interface
-         uses uMembership;
+    uses uMembership, crt;
     type
     login = record
-      mem : Membership;
+      user : string;
+      saldo : longint;
       idx : integer;
       cond : boolean;
     end;
@@ -14,10 +15,9 @@ procedure loginMember (m : Membership; var l : login);
 implementation
 
 procedure loginMember (m : Membership; var l : login);
-
-    var
-           i, yn : integer;
-           us, pa : string; {username, password}
+var
+    i, yn : integer;
+    us, pa : string; {username, password}
 
 begin
 
@@ -26,9 +26,8 @@ begin
 
 while (yn = 1) do
 begin
-     writeln;
-     write('> Masukkan username : ');readln(us);
-     write('> Masukkan password : ');readln(pa);
+     write('Masukkan username : ');readln(us);
+     write('Masukkan password : ');readln(pa);
 
    for i:=1 to m.size do
    begin
@@ -45,19 +44,24 @@ begin
    if (l.cond = true) then
    begin
         writeln;
-        writeln('> Login berhasil!');
-   end else
+        writeln('Login berhasil!');
+        l.user := m.contents[l.idx].username;
+        l.saldo := m.contents[l.idx].saldo;
+        yn:=2;
+        delay(2000);
+        clrscr;
+   end else if(l.cond = false) then
    begin
        writeln;
-       writeln('> Username atau password salah!');
+       writeln('Username atau password salah!');
        writeln;
-       writeln('> [1] Coba kembali login');
-       writeln('> [2] Kembali ke menu utama');
-       write('> Masukkan pilihan : '); readln(yn);
+       writeln(' [1] Coba kembali login');
+       writeln(' [2] Kembali ke menu utama');
+       write('Masukkan pilihan : '); readln(yn);
             while (not(yn=1) and not(yn=2)) do
             begin
-                 writeln('> Pilihan tidak valid!');
-                 write('> Masukkan pilihan : '); readln(yn);
+                 writeln('Pilihan tidak valid!');
+                 write('Masukkan pilihan : '); readln(yn);
             end;
    end;
 end;

@@ -9,7 +9,6 @@ interface
               tahun : longint;
               jam : real;
               sisakursi : longint;
-
           end;
 
      function CapacityDataCons(

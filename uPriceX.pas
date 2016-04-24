@@ -19,7 +19,7 @@ function hargaCC (seat : integer; hari : string; pW1, pW2 : longint) : longint;
                 	if(seat >= 2) then
                 	begin
                    		hargaCC := pW2 * (seat - 1);
-                    	end 
+                    	end
                     	else {seat=1}
                     	begin
                          	hargaCC := pW2 * seat

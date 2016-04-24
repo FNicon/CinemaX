@@ -1,38 +1,21 @@
 Program main;
 
-uses uConfig, uSaver, crt, uMembership, uFilm, uLoader, uParser, uNowPlaying, uUpComing, uDateData, uTransaction, uCapacity, uShow, uNext, uScheduleFilm;
-
-type u = record
-          nama : array [1..50] of string;
-          size : integer;
-     end;
-
-type p = record
-          saldo : array [1..50] of longint;
-          size : integer;
-     end;
-
+uses uConfig, uSaver, crt, uMembership, uFilm, uLoader, uParser, uNowPlaying, uUpComing, uDateData, uTransaction, uCapacity, uShow, uNext, uScheduleFilm, uRegMember, uStart, uLoginMember, uFilter, uSchedule, uSelect, uPayMember, uPayCreditCard;
 
 var
-    m : Membership;
+    session : login;
     mainMembership : Membership;
     mainFilm : Film;
     mainSchedule : Schedule;
     mainDate : DateData;
     mainTransaction : Transaction;
     mainCapacity : Capacity;
-    namas : u;
-    saldo : p;
-    sizes : integer;
-    ic : integer;
     command : string;
 
 
 procedure loadAll() forward; {F1}
-procedure showMembership(var content : u) forward;
 procedure saveAll() forward;
 procedure prompt() forward;
-procedure greeting() forward;
 procedure help() forward;
 
 procedure loadAll();
@@ -54,31 +37,12 @@ begin
     saveCapacity(mainCapacity,DATABASE_CAPACITY_FILENAME);
 end;
 
-procedure showMembership(var content : u);
-var
-    i : integer;
-begin
-    for i:= 1 to mainMembership.size do
-    begin
-        content.nama[i] := mainMembership.contents[i].username;
-    end;
-    content.size := i;
-end;
-
-
-procedure showFilm(var content : p);
-var
-    i : integer;
-begin
-    for i:= 1 to mainFilm.size do
-    begin
-        content.saldo[i] := mainFilm.contents[i].pWeekend;
-    end;
-    content.size := i;
-end;
-
 procedure prompt();
 begin
+    if(session.cond) then
+    begin
+        writeln('Hi, ', session.user, ' !' );
+    end;
     write('> ');
 end;
 
@@ -89,19 +53,6 @@ begin
     writeln('Command Available:');
     for i:=1 to COMMAND_NUMBER do
         writeln('- ', COMMAND_LIST[i]);
-end;
-
-procedure greeting();
-begin
-    writeln('                  _             _                         ');
-    writeln('                 (_)           (_)                        ');
-    writeln(' ____   ___ _   _ _ _____  ____ _ ____  _____ ____  _____ ');
-    writeln('|    \ / _ \ | | | | ___ |/ ___) |  _ \| ___ |    \(____ |');
-    writeln('| | | | |_| \ V /| | ____( (___| | | | | ____| | | / ___ |');
-    writeln('|_|_|_|\___/ \_/ |_|_____)\____)_|_| |_|_____)_|_|_\_____|');
-    writeln('                       version 0.0.1                      ');
-    delay(5000);
-    clrscr;
 end;
 
 function validCommand(inputcommand : string) : boolean;
@@ -130,12 +81,21 @@ begin
     if(coms = 'nowPlaying') then nowPlaying(mainFilm)
     else if(coms = 'help') then help()
     else if(coms = 'showMovie') then showMovie(mainFilm)
-    else if(coms = 'showNextDay') then showNextDay(mainSchedule, mainDate);
+    else if(coms = 'showNextDay') then showNextDay(mainSchedule, mainDate)
+    else if(coms = 'showUpcoming') then showUpcoming(mainSchedule, mainDate)
+    else if(coms = 'register') then regMember(mainMembership)
+    else if(coms = 'login') then loginMember(mainMembership,session)
+    else if(coms = 'genreFilter') then genreFilter(mainFilm)
+    else if(coms = 'ratingFilter') then ratingFilter(mainFilm)
+    else if(coms = 'showSchedule') then showSchedule(mainSchedule)
+    else if(coms = 'selectMovie') then selectMovie(mainTransaction,mainCapacity,mainFilm)
+    else if(coms = 'payMember') then payMember(mainTransaction,mainMembership,session)
+    else if(coms = 'payCreditCard') then payCreditCard(mainTransaction, mainFilm);
 end;
 
 
 begin
-    greeting();
+    start();
     loadAll();
     repeat
         repeat

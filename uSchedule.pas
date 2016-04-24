@@ -3,24 +3,21 @@ unit uSchedule;
 interface
 	uses uScheduleFilm;
 
-	var
-	movie : Schedule;
-
 	function isEarlier(
-	d1, m1, y1, d2, m2, y2 : integer
+	d1, m1, y1, d2, m2, y2 : LongInt
 	): boolean;
 	
 	function isKabisat (
-	maind:integer
+	maind:LongInt
 	): boolean ;
 	 
-	procedure showSchedule();
+	procedure showSchedule(Movie : Schedule);
 
 
 implementation
 
 	function isEarlier(
-	d1, m1, y1, d2, m2, y2 : integer
+	d1, m1, y1, d2, m2, y2 : LongInt
 	): boolean;
 		begin
 			if (y1<y2) then {cek tahun}
@@ -39,7 +36,7 @@ implementation
 		end;
 
 
-	function isKabisat (maind:integer)  : boolean ; 
+	function isKabisat (maind:Longint)  : boolean ; 
 		begin
 			If (maind mod 100 = 0) Then
 			begin
@@ -53,7 +50,7 @@ implementation
 			end;
 		end;
 
-	procedure showSchedule();
+	procedure showSchedule(Movie : Schedule);
 	var
 		moviename : string;
 		t1, b1, th1, t2, b2, th2,d : integer;
@@ -62,11 +59,8 @@ implementation
 	begin
 	
 		write('Input moviename : '); readln(moviename);
-		write('Input date (dd mm yy) :');
-		read(dd); read(mm); read(yy);
-		
-		
-		
+		write('Input date (dd mm yy) : ');
+		read(dd,mm,yy);
 		for i:=1 to Movie.size do
 		begin
 			if moviename=Movie.contents[i].namafilm then 

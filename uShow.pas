@@ -15,7 +15,8 @@ implementation
 		judul : string;											{input judul}
 
 	begin
-		readln('> Masukkan judul : ',judul);								{input}
+		write('Masukkan judul : ');		
+		readln(judul);						{input}
 		for i:=1 to mainF.size do									{cek hingga batas array}
 		begin
 			if judul=mainF.contents[i].judul then							{Bila nemu judul, tampilkan yang lain}

@@ -4,24 +4,21 @@ unit uSearch;
 
 interface
 	uses uFilm;
-	
-	var
-	Movie : Film;
 
-	procedure searchMovie();
-	
+	procedure searchMovie(Movie : Film);
+
 
 implementation
 
 
-	procedure searchMovie();
+	procedure searchMovie(Movie : Film);
 
 	var
 		keyword : string;
 		i, j, k, idk, l, tulis : integer;
 		Cek : boolean;
 
-	begin		
+	begin
 		tulis:=0;
 		write('Input keyword: '); readln(keyword);
 
@@ -43,7 +40,7 @@ implementation
 						begin
 							idk:=idk+1;
 							i:=i+1;
-							l:=l+1;								
+							l:=l+1;
 						end;
 						
 					if idk=length(keyword) then {jika keyword ditemukan di judul}

@@ -36,9 +36,7 @@ var
     procedure saveMembership(newMember:Membership;filename:string);
     var
         i:longint;
-        newSaldo:double;
     begin
-        newSaldo := 100000;
         write('Saving Member...');
         assign(selectedDatabase,filename);
         rewrite(selectedDatabase);
@@ -46,7 +44,7 @@ var
         begin
             t[1]:=newMember.contents[i].username;
             t[2]:=newMember.contents[i].password;
-            str(newSaldo:0:2,t[3]);
+            str(newMember.contents[i].saldo,t[3]);
             writeln(selectedDatabase,arrayToString(t,3));
         end;
         close(selectedDatabase);
@@ -96,7 +94,15 @@ var
 
             t[2]:=newTransaction.contents[i].namafilm;
             str(newTransaction.contents[i].tanggaltayang, t[3]);
+            if(newTransaction.contents[i].tanggaltayang < 10) then
+            begin
+                t[3] := '0' + t[3];
+            end;
             str(newTransaction.contents[i].bulantayang, t[4]);
+            if(newTransaction.contents[i].bulantayang < 10) then
+            begin
+                t[4] := '0' + t[4];
+            end;
             str(newTransaction.contents[i].tahuntayang, t[5]);
             str(newTransaction.contents[i].jamtayang:0:2, t[6]);
             str(newTransaction.contents[i].total, t[7]);
@@ -126,7 +132,7 @@ var
             str(newSchedule.contents[i].bulanmulaitayang, t[4]);
             if(newSchedule.contents[i].bulanmulaitayang < 10) then
             begin
-                t[3] := '0' + t[4];
+                t[4] := '0' + t[4];
             end;
             str(newSchedule.contents[i].tahunmulaitayang, t[5]);
             str(newSchedule.contents[i].lamaharitayang, t[6]);

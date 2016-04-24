@@ -3,22 +3,17 @@ unit uFilter;
 
 
 interface
+	uses uFilm, sysutils;
 
-	uses uFilm;
-	
-	var
-	Movie : Film;
-
-	procedure genreFilter(
+	procedure genreFilter(Movie : Film
 	);
-	
-	procedure ratingFilter(
+	procedure ratingFilter(Movie : Film
 	);
 
 implementation
 
 	{prrosedur genre filter}
-	procedure genreFilter(
+	procedure genreFilter(Movie : Film
 	);
 		var
 			i, N: integer;
@@ -28,13 +23,12 @@ implementation
 			 N := Movie.size;
 			 for i:=1 to N do
 			 begin
-				if (genre = Movie.contents[i].genre) then 
+				if (genre = Movie.contents[i].genre) or (genre = LowerCase(Movie.contents[i].genre)) or (genre = UpperCase(Movie.contents[i].genre)) then 
 					writeln(Movie.contents[i].judul);
 			end;
 		end;
-			
-			
-	procedure ratingFilter(
+
+	procedure ratingFilter(Movie : Film
 	);
 		var
 			i,N: integer;
@@ -44,7 +38,7 @@ implementation
 			N := Movie.size;
 			for i:=1 to N do
 			begin
-				if (rating = Movie.contents[i].viewer) then 
+				if (rating = Movie.contents[i].viewer) or (rating = LowerCase(Movie.contents[i].viewer)) or (rating = UpperCase(Movie.contents[i].viewer)) then 
 					writeln(Movie.contents[i].judul);
 			end;
 		end;
