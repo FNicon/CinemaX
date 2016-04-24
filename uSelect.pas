@@ -130,7 +130,7 @@ implementation
 		foundJudul := false;
 		while(foundJudul = false) do
 		begin
-			write('Film : '); readln(judul);
+			write('> Masukkan film yang ingin anda pesan : '); readln(judul);
 			for i:=1 to mainF.size do
 			begin
 				if(judul = lowercase(mainF.contents[i].judul)) or (judul = mainF.contents[i].judul) or (judul = uppercase(mainF.contents[i].judul)) then
@@ -142,7 +142,7 @@ implementation
 			end;
 		end;
 
-		write('Tanggal Tayang (d m y) : ');
+		write('> Tanggal penayangan (d m y) : ');
 		readln(d,m,y);
 		idx := 1;
 			for i:=1 to mainC.size do
@@ -164,7 +164,7 @@ implementation
 			price := priceDay;
 		end;
 
-		write('Jam tayang : ');readln(jam);
+		write('> Jam tayang : ');readln(jam);
 		for i:=1 to RecsJam.size do
 		begin
 			if(jam = RecsJam.jam[i].jam) then
@@ -176,10 +176,10 @@ implementation
 		jlhkursi := mainC.contents[iC].sisakursi + 1;
 		if(mainC.contents[iC].sisakursi > 0) then
 		begin
-			writeln('Kapasitas tersisa : ', mainC.contents[iC].sisakursi);
+			writeln('> Kapasitas tersisa : ', mainC.contents[iC].sisakursi);
 			while(jlhkursi > mainC.contents[iC].sisakursi ) do
 			begin
-				write('Masukkan jumlah tiket yang ingin dibeli : '); readln(jlhkursi);
+				write('> Masukkan jumlah tiket yang ingin Anda beli : '); readln(jlhkursi);
 			end;
 			str(mainT.size+1, nopes);
 			if((mainT.size+1) < 100) and ((mainT.size+1) > 10) then
@@ -203,7 +203,7 @@ implementation
 		end
 		else
 		begin
-			writeln('Woops, kursi sudah habis :)');
+			writeln('Woops, kursi sudah habis :) Mohon maaf');
 		end;
 	end;
 end.
