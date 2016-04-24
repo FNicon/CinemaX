@@ -1,13 +1,3 @@
-{Problems : data judul film harus terurut}
-
-{Procedure showNextDay
-G : Menerima input tanggal, output semua film yang ada pada esok hari
-H : showNextDay(tanggal), output : judul Film esok hari
-I : 
-J :
-K :
-L :																																																																																									
-}
 unit unext;
 interface
 	uses uLoader, uScheduleFilm, uDateData;
@@ -16,33 +6,35 @@ interface
 	{F.S : Menampilkan semua film pada esok hari}
 
 	function isUnique(chars : array of string; search : string) : boolean;
+	{I.S : Input chars dan search terdefinisi}
+	{F.S : Output True jika data ditemukan, False jika tidak}
 	
 implementation
-	procedure showNextDay (mainD:Schedule; mainDate : DateData);							{Data from database_schdl.txt}
+	procedure showNextDay (mainD:Schedule; mainDate : DateData);				{Data from database_scehdule.txt}
 	{KAMUS}
 	var
-		tanggal	: DateData;								{tanggal untuk input tanggal}
-		i,idx	: integer;							{i counter}
-		judul	: array [1..100] of string;
-		cek : string;							{simpan sementara data untuk cek}
+		Date	: DateData;								{tanggal untuk input tanggal}
+		i,idx	: integer;								{i counter}
+		judul	: array [1..100] of string;						{judul untuk cek}
+		cek : string;									{simpan sementara data untuk cek}
 		found 	: boolean;
 	begin
 		idx := 1;
 		found := false;
 		cek:='';
-		tanggal.tanggal := mainDate.tanggal + 1;
-		tanggal.bulan := mainDate.bulan;
-		tanggal.tahun := mainDate.tahun;
-		tanggal.hari := mainDate.hari;			{NxtD:=D.h+1;}
+		Date.tanggal := mainDate.tanggal + 1;
+		Date.bulan := mainDate.bulan;
+		Date.tahun := mainDate.tahun;
 		for i:=1 to mainD.size do
 		begin
-			if (mainD.contents[i].bulanmulaitayang=tanggal.bulan) and (mainD.contents[i].tahunmulaitayang=tanggal.tahun) and (tanggal.tanggal>mainD.contents[i].tanggalmulaitayang) then
+			if (Date.bulan=mainD.contents[i].bulanmulaitayang) and (Date.tahun=mainD.contents[i].tahunmulaitayang) and (Date.tanggal=mainD.contents[i].tanggalmulaitayang) then
 			begin
 				if mainD.contents[i].namafilm<>cek then
 				begin
 					if(not(isUnique(judul,mainD.contents[i].namafilm))) then
 					begin
 						judul[idx] := mainD.contents[i].namafilm;
+						cek:=judul[idx];
 						idx:=idx+1;
 					end;
 					found := true;
@@ -56,7 +48,7 @@ implementation
 				writeln(judul[i]);
 		end else
 		begin
-			writeln('Tidak ada film yang ditayangkan pada hari selanjutnya :)');
+			writeln('Tidak ada film yang ditayangkan pada hari selanjutnya');
 		end;
 
 	end;
@@ -78,7 +70,4 @@ implementation
 		end;
 		isUnique := found;
 	end;
-
 end.
-
-{mainF.contents[i].judul}
