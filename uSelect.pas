@@ -15,80 +15,77 @@ implementation
 	
 	{Kamus}
 	begin
-		if year=2016 then
+		case (date mod 7) of
 		begin
-			case (date mod 7) of
+			0 : case month of
 			begin
-				0 : case month of
-				begin
-					1,4,7 	: datetohari:='Kamis';
-					2,8 	: datetohari:='Minggu';
-					3,11	: datetohari:='Senin';
-					5	: datetohari:='Sabtu';
-					6	: datetohari:='Selasa';
-					9,12	: datetohari:='Rabu';
-					10	: datetohari:='Jumat';
+				1,4,7 	: datetohari:='Kamis';
+				2,8 	: datetohari:='Minggu';
+				3,11	: datetohari:='Senin';
+				5	: datetohari:='Sabtu';
+				6	: datetohari:='Selasa';
+				9,12	: datetohari:='Rabu';
+				10	: datetohari:='Jumat';
 				end;
-				1 : case month of
-				begin
-					1,4,7 	: datetohari:='Jumat';
-					2,8 	: datetohari:='Senin';
-					3,11	: datetohari:='Selasa';
-					5	: datetohari:='Minggu';
-					6	: datetohari:='Rabu';
-					9,12	: datetohari:='Kamis';
-					10	: datetohari:='Sabtu';
-				end;
-				2 : case month of
-				begin
-					1,4,7 	: datetohari:='Sabtu';
-					2,8 	: datetohari:='Selasa';
-					3,11	: datetohari:='Rabu';
-					5	: datetohari:='Senin';
-					6	: datetohari:='Kamis';
-					9,12	: datetohari:='Jumat';
-					10	: datetohari:='Minggu';
-				end;
-				3 : case month of
-				begin
-					1,4,7 	: datetohari:='Minggu';
-					10	: datetohari:='Senin';
-					5	: datetohari:='Selasa';
-					2,8 	: datetohari:='Rabu';
-					3,11	: datetohari:='Kamis';
-					6	: datetohari:='Jumat';
-					9,12	: datetohari:='Sabtu';
-				end;
-				4 : case month of
-				begin
-					1,4,7 	: datetohari:='Senin';
-					10	: datetohari:='Selasa';
-					5	: datetohari:='Rabu';
-					2,8 	: datetohari:='Kamis';
-					3,11	: datetohari:='Jumat';
-					6	: datetohari:='Sabtu';
-					9,12	: datetohari:='Minggu';
-				end;
-				5 : case month of
-				begin
-					1,4,7 	: datetohari:='Selasa';
-					10	: datetohari:='Rabu';
-					5	: datetohari:='Kamis';
-					2,8 	: datetohari:='Jumat';
-					3,11	: datetohari:='Sabtu';
-					6	: datetohari:='Minggu';
-					9,12	: datetohari:='Senin';
-				end;
-				6 : case month of
-				begin
-					1,4,7 	: datetohari:='Rabu';
-					10	: datetohari:='Kamis';
-					5	: datetohari:='Jumat';
-					2,8 	: datetohari:='Sabtu';
-					3,11	: datetohari:='Minggu';
-					6	: datetohari:='Senin';
-					9,12	: datetohari:='Selasa';
-				end;
+			1 : case month of
+			begin
+				1,4,7 	: datetohari:='Jumat';
+				2,8 	: datetohari:='Senin';
+				3,11	: datetohari:='Selasa';
+				5	: datetohari:='Minggu';
+				6	: datetohari:='Rabu';
+				9,12	: datetohari:='Kamis';
+				10	: datetohari:='Sabtu';
+			end;
+			2 : case month of
+			begin
+				1,4,7 	: datetohari:='Sabtu';
+				2,8 	: datetohari:='Selasa';
+				3,11	: datetohari:='Rabu';
+				5	: datetohari:='Senin';
+				6	: datetohari:='Kamis';
+				9,12	: datetohari:='Jumat';
+				10	: datetohari:='Minggu';
+			end;
+			3 : case month of
+			begin
+				1,4,7 	: datetohari:='Minggu';
+				10	: datetohari:='Senin';
+				5	: datetohari:='Selasa';
+				2,8 	: datetohari:='Rabu';
+				3,11	: datetohari:='Kamis';
+				6	: datetohari:='Jumat';
+				9,12	: datetohari:='Sabtu';
+			end;
+			4 : case month of
+			begin
+				1,4,7 	: datetohari:='Senin';
+				10	: datetohari:='Selasa';
+				5	: datetohari:='Rabu';
+				2,8 	: datetohari:='Kamis';
+				3,11	: datetohari:='Jumat';
+				6	: datetohari:='Sabtu';
+				9,12	: datetohari:='Minggu';
+			end;
+			5 : case month of
+			begin
+				1,4,7 	: datetohari:='Selasa';
+				10	: datetohari:='Rabu';
+				5	: datetohari:='Kamis';
+				2,8 	: datetohari:='Jumat';
+				3,11	: datetohari:='Sabtu';
+				6	: datetohari:='Minggu';
+				9,12	: datetohari:='Senin';
+			end;
+			6 : case month of
+			begin
+				1,4,7 	: datetohari:='Rabu';
+				10	: datetohari:='Kamis';
+				5	: datetohari:='Jumat';
+				2,8 	: datetohari:='Sabtu';
+				3,11	: datetohari:='Minggu';
+				6	: datetohari:='Senin';
+				9,12	: datetohari:='Selasa';
 			end;
 		end;
 	end;
@@ -157,7 +154,7 @@ implementation
 				nmr:=nmr+1;
 				write('> Pemesanan sukses, nomor pemesanan Anda adalah: ');
 				tulis(nmr);					{tulis nomor pesan}
-				bayar:=hargaCC(bl,hari,harga1,harga2);		{olah harga bayar}
+				bayar:=hargaM(bl,hari,harga1,harga2);		{olah harga bayar}
 				mainC.contents[idx].sisakursi:=mainC.contents[i].sisakursi-bl;
 				mainT.contents[idx].nomorpemesanan:=nmr;
 				mainT.contents[idx].total:=bayar;
@@ -184,5 +181,3 @@ implementation
 		until bl<=mainC.contents[idx].sisakursi;
 	end;
 end.
-
-{mainF.contents[i].judul}
