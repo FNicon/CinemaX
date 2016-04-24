@@ -3,3 +3,5 @@
 003 | The Jungle Book | 09 | 04 | 2016 | 19.00 | 100000 | Sudah Dibayar
 004 | The Jungle Book | 09 | 04 | 2016 | 19.00 | 100000 | Sudah Dibayar
 005 | The Jungle Book | 09 | 04 | 2016 | 19.00 | 90000 | Sudah Dibayar
+006 | The Jungle Book | 08 | 04 | 2016 | 12.30 | 160000 | Belum Dibayar
+007 | The Jungle Book | 08 | 04 | 2016 | 21.10 | 80000 | Belum Dibayar

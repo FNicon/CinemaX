@@ -1,10 +1,20 @@
 unit uselect;
 interface
-	uses uLoader,uSnackX,uPriceX, uTransaction, uFilm, uCapacity;
+	uses uLoader,uSnackX,uPriceX, uTransaction, uFilm, uCapacity, sysutils, uConfig;
 	
+	type
+		recordJam = record
+			jam : real;
+			idx : integer;
+	end;
+	type
+		arJam = record
+			jam : array [1..10] of recordJam;
+			size : integer;
+	end;
 	function datetohari (date,month,year:Integer):String;
 	procedure tulis (nopesan:Integer);
-	procedure selectMovie (mainT:Transaction; mainC:Capacity; mainF: Film);
+	procedure selectMovie (var mainT:Transaction; var mainC:Capacity; mainF: Film);
 	
 implementation
 	function datetohari (date,month,year:Integer):String;
@@ -101,78 +111,99 @@ implementation
 		end;
 	end;
 			
-	procedure selectMovie (mainT:Transaction;mainC:Capacity;mainF: Film);		{Data from Database_Capacity.txt, database_transaction.txt,database_film.txt}
+	procedure selectMovie (var mainT:Transaction;var mainC:Capacity; mainF: Film);		{Data from Database_Capacity.txt, database_transaction.txt,database_film.txt}
 	{I.S : Input database_Capacity,database_transaction,database_film terdefinisi.}
 	{F.S : Output nomer pesan,harga yang dibayar}
 	
 	{KAMUS}
 	var
-		i:Integer;				{counter}
-		jdl: string;				{input judul}
-		tgl: integer;				{input tanggal}
-		bln: integer;				{input bulan}
-		thn : integer;				{input tahun}
-		hari:String;				{var hari}
-		jm:Real;					{input jam}
-		jawaban:char;				{input tanya snack}
-		bl:Integer;				{input jml beli}
-		nmr:Integer;				{output Nomor pemesanan}
-		bayar:Integer;				{output bayar}
-		harga1,harga2:Integer;			{var harga tiket}
-		hargaS:LongInt;				{var harga Snack}
-		kapasitas:Integer;			{var jml kursi}
-		idx:Integer;				{tampung data index}
+		judul : string;
+		i,idx, iC : longint;
+		priceDay, priceEnd, price : longint;
+		jam : real;
+		d,m,y : integer;
+		jlhkursi : longint;
+		foundJudul : boolean;
+		RecsJam : arJam;
+		nopes : string;
 	begin
-		harga1:=0;
-		harga2:=0;
-		nmr:=mainT.size;
-		write('Film : ');readln(jdl);
-		write('Tanggal tayang (DD MM YYYY) : ');readln(tgl, bln, thn);
-		write('Jam tayang : '); readln(jm);
-		hari:=datetohari(tgl,bln,thn);				{olah hari}
-		for i:=1 to mainC.size do					{cari data film}
+		foundJudul := false;
+		while(foundJudul = false) do
 		begin
-			if (jdl=mainC.contents[i].namafilm) and (tgl=mainC.contents[i].tanggal) and (bln=mainC.contents[i].bulan) and (thn=mainC.contents[i].tahun) and (jm=mainC.contents[i].jam) then
+			write('Film : '); readln(judul);
+			for i:=1 to mainF.size do
 			begin
-				writeln('Kapasitas tersisa : ',mainC.contents[i].sisakursi,' orang');
-				kapasitas:=mainC.contents[i].sisakursi;
-				idx:=i;
-			end;
-		end;
-		repeat
-		begin
-			write('Masukkan jumlah tiket yang ingin dibeli: ');readln(bl);
-			if bl<=mainC.contents[idx].sisakursi then
-			begin
-				nmr:=nmr+1;
-				write('Pemesanan sukses, nomor pemesanan Anda adalah: ');
-				tulis(nmr);					{tulis nomor pesan}
-				bayar:=hargaM(bl,hari,harga1,harga2);		{olah harga bayar}
-				mainC.contents[idx].sisakursi:=mainC.contents[i].sisakursi-bl;
-
-				mainT.contents[nmr].nomorpesanan := nmr;
-				mainT.contents[nmr].total:=bayar;
-				mainT.contents[nmr].jenispembayaran:='Belum dibayar';
-				mainT.size := nmr;
-				writeln('Harga yang harus dibayar adalah Rp.',bayar);
-				writeln('Apakah anda ingin membeli snack? (Y/N) ');readln(jawaban);
-				if jawaban='Y' then
+				if(judul = lowercase(mainF.contents[i].judul)) or (judul = mainF.contents[i].judul) or (judul = uppercase(mainF.contents[i].judul)) then
 				begin
-					snack(hargaS);
-				end
-				else
-				begin
-					writeln('Anda tidak memesan Snack');
+					foundJudul := true;
+					priceDay := mainF.contents[i].pWeekdays;
+					priceEnd := mainF.contents[i].pWeekend;
 				end;
-				bayar:=bayar+hargaS;
-				writeln('Total bayar : Rp.',bayar);
-				mainT.contents[idx].total:=bayar;
-			end
-			else
-			begin
-				writeln('Pemesanan gagal');
 			end;
 		end;
-		until bl<=mainC.contents[idx].sisakursi;
+
+		write('Tanggal Tayang (d m y) : ');
+		readln(d,m,y);
+		idx := 1;
+			for i:=1 to mainC.size do
+			begin
+				if (judul = mainC.contents[i].namafilm) and (d = mainC.contents[i].tanggal) and (m = mainC.contents[i].bulan) and (y = mainC.contents[i].tahun) then
+				begin
+					RecsJam.jam[idx].jam := mainC.contents[i].jam;
+					RecsJam.jam[idx].idx := i;
+					idx := idx + 1;
+				end;
+			end;
+			RecsJam.size := idx - 1;
+
+		if (datetohari(d,m,y) = 'Sabtu') or (datetohari(d,m,y) = 'Minggu') then
+		begin
+			price := priceEnd;
+		end else
+		begin
+			price := priceDay;
+		end;
+
+		write('Jam tayang : ');readln(jam);
+		for i:=1 to RecsJam.size do
+		begin
+			if(jam = RecsJam.jam[i].jam) then
+			begin
+				iC := RecsJam.jam[i].idx;
+			end;
+		end;
+
+		jlhkursi := mainC.contents[iC].sisakursi + 1;
+		if(mainC.contents[iC].sisakursi > 0) then
+		begin
+			writeln('Kapasitas tersisa : ', mainC.contents[iC].sisakursi);
+			while(jlhkursi > mainC.contents[iC].sisakursi ) do
+			begin
+				write('Masukkan jumlah tiket yang ingin dibeli : '); readln(jlhkursi);
+			end;
+			str(mainT.size+1, nopes);
+			if((mainT.size+1) < 100) and ((mainT.size+1) > 10) then
+			begin
+				nopes := '0' + nopes;
+			end else if((mainT.size+1) < 10) then
+			begin
+				nopes := '00' + nopes;
+			end;
+ 			writeln('Pemesanan sukses, nomor pemesanan anda adalah : ', nopes);
+ 			mainT.size := mainT.size + 1;
+ 			mainC.contents[iC].sisakursi := mainC.contents[iC].sisakursi - jlhkursi;
+ 			mainT.contents[mainT.size].nomorpesanan := mainT.size;
+ 			mainT.contents[mainT.size].namafilm := mainC.contents[iC].namafilm;
+ 			mainT.contents[mainT.size].tanggaltayang := mainC.contents[iC].tanggal;
+ 			mainT.contents[mainT.size].bulantayang := mainC.contents[iC].bulan;
+ 			mainT.contents[mainT.size].tahuntayang := mainC.contents[iC].tahun;
+ 			mainT.contents[mainT.size].jamtayang := mainC.contents[iC].jam;
+ 			mainT.contents[mainT.size].total := price * jlhkursi;
+ 			mainT.contents[mainT.size].jenispembayaran := 'Belum Dibayar';
+		end
+		else
+		begin
+			writeln('Woops, kursi sudah habis :)');
+		end;
 	end;
 end.

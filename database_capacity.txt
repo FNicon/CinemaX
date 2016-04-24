@@ -1,8 +1,8 @@
-The Jungle Book | 08 | 04 | 2016 | 12.30 | 40
-The Jungle Book | 08 | 04 | 2016 | 14.40 | 30
+The Jungle Book | 08 | 04 | 2016 | 12.30 | 36
+The Jungle Book | 08 | 04 | 2016 | 14.40 | 0
 The Jungle Book | 08 | 04 | 2016 | 16.50 | 35
 The Jungle Book | 08 | 04 | 2016 | 19.00 | 20
-The Jungle Book | 08 | 04 | 2016 | 21.10 | 40
+The Jungle Book | 08 | 04 | 2016 | 21.10 | 38
 The Divergent Series : Allegiant | 08 | 04 | 2016 | 12.00 | 30
 The Divergent Series : Allegiant | 08 | 04 | 2016 | 14.25 | 25
 The Divergent Series : Allegiant | 08 | 04 | 2016 | 16.50 | 35
