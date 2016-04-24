@@ -1,4 +1,3 @@
-{problems : butuh type tanggal untuk input tanggal}
 unit uselect;
 interface
 	uses uLoader,uSnackX,uPriceX;
