@@ -1,6 +1,6 @@
 Program main;
 
-uses uConfig, uSaver, crt, uMembership, uFilm, uLoader, uParser, uNowPlaying, uUpComing, uDateData, uTransaction, uCapacity, uShow, uNext, uScheduleFilm, uRegMember, uStart, uLoginMember, uFilter, uSchedule, uSelect, uPayMember, uPayCreditCard;
+uses uConfig, uSaver, crt, uMembership, uFilm, uLoader, uParser, uNowPlaying, uUpComing, uDateData, uTransaction, uCapacity, uShow, uNext, uScheduleFilm, uRegMember, uStart, uLoginMember, uFilter, uSchedule, uSelect, uPayMember, uPayCreditCard, uSearch;
 
 var
     session : login;
@@ -90,7 +90,8 @@ begin
     else if(coms = 'showSchedule') then showSchedule(mainSchedule)
     else if(coms = 'selectMovie') then selectMovie(mainTransaction,mainCapacity,mainFilm)
     else if(coms = 'payMember') then payMember(mainTransaction,mainMembership,session)
-    else if(coms = 'payCreditCard') then payCreditCard(mainTransaction, mainFilm);
+    else if(coms = 'payCreditCard') then payCreditCard(mainTransaction, mainFilm)
+    else if(coms = 'search') then searchMovie(mainFilm);
 end;
 
 

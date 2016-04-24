@@ -33,7 +33,7 @@ implementation
         size:=0;
         for i:=1 to MainFilm.size do
         begin
-            if (editDistance(command,mainFilm.contents[i].sinopsis) <= 2) then
+            if (editDistance(command,mainFilm.contents[i].sinopsis) <= (length(mainFilm.contents[i].sinopsis)-20)) then
             begin
                 size := size + 1;
                 getSimilarSynopsis[size] := mainFilm.contents[i].judul;
@@ -50,7 +50,7 @@ implementation
         size:=0;
         for i:=1 to MainFilm.size do
         begin
-            if (editDistance(command,mainFilm.contents[i].judul) <= 2) then
+            if (editDistance(command,mainFilm.contents[i].judul) <= (length(mainFilm.contents[i].judul)-5)) then
             begin
                 size := size + 1;
                 getSimilarJudul[size] := mainFilm.contents[i].judul;
@@ -67,7 +67,7 @@ implementation
         size:=0;
         for i:=1 to MainFilm.size do
         begin
-            if (editDistance(command,mainFilm.contents[i].genre) <= 2) then
+            if (editDistance(command,mainFilm.contents[i].genre) <= (length(mainFilm.contents[i].genre)-7)) then
             begin
                 size := size + 1;
                 getSimilarGenre[size] := mainFilm.contents[i].judul;
@@ -92,7 +92,6 @@ implementation
         end;
         if (not found) then
         begin
-            writeln('Sorry, command not found');
             similarCommand := getSimilarJudul(command, mainFilm);
             if (similarCommand[1] = '#') then
             begin
@@ -126,7 +125,6 @@ implementation
         end;
         if (not found) then
         begin
-            writeln('Sorry, command not found');
             similarCommand := getSimilarGenre(command, mainFilm);
             if (similarCommand[1] = '#') then
             begin
@@ -160,7 +158,6 @@ implementation
         end;
         if (not found) then
         begin
-            writeln('Sorry, command not found');
             similarCommand := getSimilarSynopsis(command, mainFilm);
             if (similarCommand[1] = '#') then
             begin

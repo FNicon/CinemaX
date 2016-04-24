@@ -1,9 +1,6 @@
 unit uSearch;
-
-
-
 interface
-	uses uFilm;
+	uses uFilm, uParser;
 
 	procedure searchMovie(Movie : Film);
 
@@ -12,55 +9,40 @@ implementation
 
 
 	procedure searchMovie(Movie : Film);
-
 	var
-		keyword : string;
-		i, j, k, idk, l, tulis : integer;
+		keyword: string;
+		pil : integer;
 		Cek : boolean;
 
 	begin
-		tulis:=0;
-		write('Input keyword: '); readln(keyword);
+		cek := false;
 
-		
-		For j:=1 to Movie.size do 
+		while(not(cek)) do
 		begin
-		Cek := False;
-		k:=1;
-		
-			while (k<length(Movie.contents[j].judul)) and Cek=False do {akses ke tiap element di array}
+		writeln('Search based on : ');
+		writeln(' 1. Title');
+		writeln(' 2. Genre');
+		writeln(' 3. Synopsis');
+		write('Masukkan pilihan : ');
+		readln(pil);
+			if(pil = 1) then
 			begin
-			if keyword[1]=Movie.contents[j].judul[k] then {jika huruf pertama keyword sama dengan sebuah huruf di judul}
-				begin
-					{cek untuk huruf pada keyword selanjutnya, apakah sama dengan huruf selanjutnya di judul}
-					idk:=1;
-					i:=1;
-					l:=k;
-					while (keyword[i]=Movie.contents[j].judul[l]) and (i<length(keyword)) do
-						begin
-							idk:=idk+1;
-							i:=i+1;
-							l:=l+1;
-						end;
-						
-					if idk=length(keyword) then {jika keyword ditemukan di judul}
-						begin
-							writeln(Movie.contents[j].judul);
-							Cek:=True;
-							tulis:=tulis+1;
-						end
-					else
-						begin
-							k:=k+1;
-						end;
-				end else
-							k:=k+1;
+				write('Input keyword: '); readln(keyword);
+				cek := true;
+				cekJudul(keyword,Movie);
+			end
+			else if(pil = 2) then
+			begin
+				write('Input keyword: '); readln(keyword);
+				cek := true;
+				cekGenre(keyword, Movie);
+			end
+			else if(pil = 3) then
+			begin
+				write('Input keyword: '); readln(keyword);
+				cek := true;
+				cekSynopsis(keyword,Movie);
 			end;
-		
-			
 		end;
-		
-		if tulis=0 then {Jika tidak ditemukan keyword]
-		writeln('Keyword not found');
 	end;
 end.
