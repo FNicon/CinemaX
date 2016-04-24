@@ -133,49 +133,49 @@ implementation
 		idx:Integer;				{tampung data index}
 	begin
 		nmr:=mainT.size;
-		readln('Film : ',jdl);
-		readln('Tanggal tayang (DD MM YYYY) : ',tgl, bln, thn);		{<<<< Gantiin dong Ray... T_T>>>>}
-		readln('Jam tayang : ',jm);
+		readln('> Film : ',jdl);
+		readln('> Tanggal tayang (DD MM YYYY) : ',tgl, bln, thn);
+		readln('> Jam tayang : ',jm);
 		hari:=datetohari(tgl,bulan,tahun);				{olah hari}
 		for i:=1 to mainC.size do					{cari data film}
 		begin
 			if (jdl=mainC.contents[i].judul) and (tgl=mainC.contents[i].tanggal) and (bln=mainC.contents[i].bulan) and (thn=mainC.contents[i].tahun) and (jm=mainC.contents[i].jam) then
 			begin
-				writeln('> Kapasitas tersisa : ',mainC.contents[i].sisakursi,' orang');
+				writeln('Kapasitas tersisa : ',mainC.contents[i].sisakursi,' orang');
 				kapasitas:=mainC.contents[i].sisakursi;
 				idx:=i;
 			end;
 		end;
 		repeat
 		begin
-			readln('Masukkan jumlah tiket yang ingin dibeli: ',bl);
+			readln('> Masukkan jumlah tiket yang ingin dibeli: ',bl);
 			if bl<=mainC.contents[idx].sisakursi then
 			begin
 				nmr:=nmr+1;
-				write('> Pemesanan sukses, nomor pemesanan Anda adalah: ');
+				write('Pemesanan sukses, nomor pemesanan Anda adalah: ');
 				tulis(nmr);					{tulis nomor pesan}
 				bayar:=hargaM(bl,hari,harga1,harga2);		{olah harga bayar}
 				mainC.contents[idx].sisakursi:=mainC.contents[i].sisakursi-bl;
 				mainT.contents[idx].nomorpemesanan:=nmr;
 				mainT.contents[idx].total:=bayar;
 				mainT.contents[idx].jenisPembayaran:='Belum dibayar';
-				writeln('> Harga yang harus dibayar adalah Rp.',bayar);
-				readln('Apakah anda ingin membeli snack? (Y/N) ',jawaban);
+				writeln('Harga yang harus dibayar adalah Rp.',bayar);
+				readln('> Apakah anda ingin membeli snack? (Y/N) ',jawaban);
 				if jawaban='Y' then
 				begin
 					snack(hargaS);
 				end
 				else
 				begin
-					writeln('> Anda tidak memesan Snack');
+					writeln('Anda tidak memesan Snack');
 				end;
 				bayar:=bayar+hargaS;
-				writeln('> Total bayar : Rp.',bayar);
+				writeln('Total bayar : Rp.',bayar);
 				mainT.contents[idx].total:=bayar;
 			end
 			else
 			begin
-				writeln('> Pemesanan gagal');
+				writeln('Pemesanan gagal');
 			end;
 		end;
 		until bl<=mainC.contents[idx].sisakursi;
