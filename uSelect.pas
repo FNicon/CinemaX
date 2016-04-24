@@ -110,7 +110,7 @@ implementation
 	end;
 			
 	procedure selectMovie (mainT:Transaction,mainC:Capacity,mainF: Film);		{Data from Database_Capacity.txt, database_transaction.txt,database_film.txt}
-	{I.S : Data dari database_Capacity terdefinisi.}
+	{I.S : Input database_Capacity,database_transaction,database_film terdefinisi.}
 	{F.S : Output nomer pesan,harga yang dibayar}
 	
 	{KAMUS}
