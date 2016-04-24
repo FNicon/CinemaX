@@ -24,8 +24,8 @@ implementation
 				writeln('ViewerRating 		: ',mainF.contents[i].viewer);			{output}
 				writeln('Durasi		    	: ',mainF.contents[i].durasi);			{output}
 				writeln('Sinopsis		: ',mainF.contents[i].sinopsis);		{output}
-				writeln('HargaWeekdays		: ',mainF.contents[i].pWeekdays);		{output}
-				writeln('HargaWeekdend		: ',mainF.contents[i].pWeekend);		{output}
+				writeln('HargaWeekdays		: Rp.',mainF.contents[i].pWeekdays);		{output}
+				writeln('HargaWeekdend		: Rp.',mainF.contents[i].pWeekend);		{output}
 			end;
 		end;
 	end;
